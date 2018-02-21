@@ -1,11 +1,6 @@
-# Typescript Boilerplate
+# Script for css variables for Internet Explorer <= 11
 
-Boilerplate for a Typescript project with SASS for CSS and Handlebars for HTML templating.
-
-<p align="center">
-    <img src="https://raw.githubusercontent.com/andreros/typescript-boilerplate/master/src/assets/img/typescript-boilerplate.png" width="600">
-</p>
-
+This script enables the use of the JavaScript `style.setProperty` on Internet Explorer <=11
 
 ## Motivation
 
@@ -70,9 +65,17 @@ browser should open a window with the project running from [http://localhost:300
 
 
 ## Author
+**Miguel Teixeira**
+* <https://github.com/Mteixeira88/>
 
+## Contributors
+**Mauro Reis**
+* <https://github.com/Mteixeira88/>
+
+## Project forked
+*<https://github.com/andreros/typescript-boilerplate>
+## Author
 **André Rosa**
-
 * <https://bitbucket.org/candrelsrosa>
 * <https://github.com/andreros/>
 * <https://facebook.com/candrelsrosa>
