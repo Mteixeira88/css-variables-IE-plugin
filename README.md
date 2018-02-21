@@ -1,6 +1,9 @@
-# Css variables for Internet Explorer <= 11
+# CSS variables for Internet Explorer <= 11
+
+[![Waffle.io](https://img.shields.io/waffle/label/evancohen/smart-mirror/in%20progress.svg)]()
 
 This project enables the use of css variables on Internet Explorer <= 11.
+**Note:** This project is still in progress, but you can see the code/example bellow in the Usage and use the [code section](#usage).
 
 ## Motivation
 
@@ -40,8 +43,7 @@ Clone or download this project. From the project directory run the command `npm 
 To run the project in development mode, from the project directory run the command `npm run dev`. Your default
 browser should open a window with the project running from [http://localhost:3000/](http://localhost:3000/).
 
-
-## Usage
+## Usage <a id="usage"></a>
 Below it's possible to see the rules used for the algorithym to work.
 `Note:` This project is ready to test (in progress), if you want to use in your own project withou clone the project, all you need is to copy the code in
 the section `use the code`.
