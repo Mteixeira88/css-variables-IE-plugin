@@ -1,19 +1,15 @@
-# Script for css variables for Internet Explorer <= 11
+# Css variables for Internet Explorer <= 11
 
-This script enables the use of the JavaScript `style.setProperty` on Internet Explorer <=11
+This project enables the use of css variables on Internet Explorer <= 11.
 
 ## Motivation
 
-In a fast evolving tech world, it is vital to keep up the pace. The creation of this boilerplate project comes both from
-the necessity of learning how to properly assemble, configure and troubleshoot a TypeScript project from scratch, including
-all the needed dependencies and specificities, as well as, have a ready-to-go solution for new projects to come.
+When programming, the most frustrating part is when we test our website in Internet Explorer and we want to implement the last breakthrough
+web enhancements like [css variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables). The creation of this repository
+is to enable all programmers to stop thinking on this particular problem and start using as they want `css variables` withou even have to
+worry about if it works in IE<=11.
 
-This project also intends to be a comprehensive guide to anyone wanting to follow the same path and assemble his own
-project from scratch. If you are planning to do so, please take a look at the
-[project documentation](https://andreros.github.io/typescript-boilerplate/).
-
-
-## Prerequisites
+## Test Prerequisites
 
 ### [Node.js](https://nodejs.org/en/download/)
 
@@ -45,15 +41,116 @@ To run the project in development mode, from the project directory run the comma
 browser should open a window with the project running from [http://localhost:3000/](http://localhost:3000/).
 
 
-## Built With
+## Usage
+Below it's possible to see the rules used for the algorithym to work.
+`Note:` This project is ready to test (in progress), if you want to use in your own project withou clone the project, all you need is to copy the code in
+the section `use the code`.
 
-*  SASS CSS Pre-processor: [https://sass-lang.com/](https://sass-lang.com/)
-*  Handlebars Templating Engine: [http://handlebarsjs.com/](http://handlebarsjs.com/)
-*  TypeScript Scripting Language: [https://www.typescriptlang.org/](https://www.typescriptlang.org/)
-*  Browserify modules / dependencies bundler: [http://browserify.org/](http://browserify.org/)
-*  Gulp Task Automator: [https://gulpjs.com/](https://gulpjs.com/)
-*  Browser Sync Server Synchronizing Tool: [https://browsersync.io/](https://browsersync.io/)
+### Nomenculature
+When writing the css variable name, be aware that the prorperty name when writing the style inline in Internet Explorer is always the last
+word in the variable name like '--variable-name-with-what-i-like-`propertyInJavaScript`'.
+The `propertyInJavaScript` must be written following the rules of the `HTML DOM style Property`.
+You can check all the possible `names` in this [link](https://www.w3schools.com/jsref/dom_obj_style.asp)
 
+### Gulp Task
+
+
+## Use the Code
+### Typescript Class
+```sh
+export class Utilities {
+    private element: HTMLElement;
+
+    constructor(element: any) {
+        this.element = element;
+    }
+
+    /**
+    * The Window.navigator read-only property returns a reference to the Navigator object,
+    * which can be queried for information about the application running the script.
+    * @return {string} browser
+    */
+   public static detectBrowser(): string {
+        const agent = navigator.userAgent;
+        let browser;
+        if (agent.indexOf('Chrome') > -1) {
+            browser = 'Chrome';
+        } else if (agent.indexOf('Safari') > -1) {
+            browser = 'Safari';
+        } else if (agent.indexOf('Opera') > -1) {
+            browser = 'Opera';
+        } else if (agent.indexOf('Firefox') > -1) {
+            browser = 'Firefox';
+        } else if (agent.indexOf('Edge') > -1) {
+            browser = 'Edge';
+        } else if ((navigator.userAgent.indexOf('Trident/7.0') > 0) ||
+            (/MSIE 10/i.test(navigator.userAgent)) ||
+            (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent))) {
+            browser = 'IE';
+        }
+        return browser;
+    }
+
+    /**
+    * This method swaps the function style.setProperty('--variable', 'value') to style.property = 'value'
+    * if it detects that the user is in Internet Explorer <= 11
+    * The prorperty name is always the last word in the variable name '--variable-name-propertyInJavaScript'
+    * @param {HTMLElement, any}
+    */
+    public static changeProperty(element: HTMLElement, properties: any) {
+        if (this.detectBrowser() === 'IE') {
+            Object.keys(properties).forEach((key: any | {}) => {
+                const property = key.split('-');
+                const propertyName = property[property.length - 1];
+                element.style[propertyName] = properties[key];
+              });
+        } else {
+            Object.keys(properties).forEach((key: any) => {
+                element.style.setProperty(key, properties[key]);
+              });
+        }
+    }
+}
+```
+
+### Typescript usage
+
+```sh
+import {Utilities} from '../utilities';
+const propStyle: any = {};
+myHtmlElement = document.document.querySelector('.myHtmlElement');
+propStyle['--my-varibale-left'] = '14px';
+Utilities.changeProperty(myHtmlElement, propStyle);
+```
+
+### Gulp
+#### Installation
+
+```sh
+npm install gulp-vars --save-dev
+```
+
+```sh
+gulp.task('pl-assets', gulp.series(
+    'pl-copy:css'
+));
+
+gulp.task('pl-copy:css', gulp.series(
+  'pl-compile-ie:css'
+));
+
+gulp.task('pl-compile-ie:css', function(){
+  return gulp.src([
+      normalizePath(paths().public.css + '/**/*.css')
+    ])
+    .pipe(vars())
+    .pipe(gulp_rename(function (path) {
+      path.basename += "-ie";
+    }))
+    .pipe(gulp.dest(normalizePath(paths().public.css)))
+    .pipe(browserSync.stream());
+});
+```
 
 ## Contributing
 
@@ -66,15 +163,14 @@ browser should open a window with the project running from [http://localhost:300
 
 ## Author
 **Miguel Teixeira**
-* <https://github.com/Mteixeira88/>
+* <https://github.com/Mteixeira88>
 
 ## Contributors
 **Mauro Reis**
-* <https://github.com/Mteixeira88/>
+* <https://github.com/mauroreisvieira>
 
 ## Project forked
 *<https://github.com/andreros/typescript-boilerplate>
-## Author
 **André Rosa**
 * <https://bitbucket.org/candrelsrosa>
 * <https://github.com/andreros/>

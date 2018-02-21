@@ -1,7 +1,7 @@
 {
-    "name": "typescript-boilerplate",
+    "name": "css-variables-IE-script",
     "version": "1.0.0",
-    "description": "Boilerplate for a Typescript project with SASS for CSS and Handlebars for HTML templating.",
+    "description": "This script enables the use of the JavaScript style.setProperty on Internet Explorer <=11",
     "main": "index.html",
     "scripts": {
         "start": "gulp",
@@ -32,23 +32,18 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/andreros/typescript-boilerplate"
+        "url": "https://github.com/Mteixeira88/css-variables-IE-script"
     },
     "keywords": [
-        "boilerplate",
-        "typescript",
-        "SASS",
-        "handlebars"
+        "css-variables",
+        "ie",
+        "typescript"
     ],
-    "author": "André Rosa <andreros@gmail.com>",
+    "author": "Miguel Teixeira <mteixeira88013@gmail.com>",
     "contributors": [
         {
-            "name": "Hugo Gonçalves",
-            "url": "https://github.com/HugoGon"
-        },
-        {
-            "name": "Miguel Teixeira",
-            "url": "https://github.com/Mteixeira88"
+            "name": "Mauro Reis Vieira",
+            "url": "https://github.com/mauroreisvieira"
         }
     ],
     "license": "Unlicense"
