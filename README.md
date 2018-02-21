@@ -3,7 +3,8 @@
 [![Waffle.io](https://img.shields.io/waffle/label/evancohen/smart-mirror/in%20progress.svg)]()
 
 This project enables the use of css variables on Internet Explorer <= 11.
-**Note:** This project is still in progress, but you can see the code/example bellow in the Usage and use the [code section](#usage).
+
+**Note:** This project is still in progress, but you can see the code/example bellow in the [Usage](#usage) section.
 
 ## Motivation
 
@@ -43,19 +44,30 @@ Clone or download this project. From the project directory run the command `npm 
 To run the project in development mode, from the project directory run the command `npm run dev`. Your default
 browser should open a window with the project running from [http://localhost:3000/](http://localhost:3000/).
 
-## Usage <a id="usage"></a>
+<a id="usage"></a>
+## Usage
 Below it's possible to see the rules used for the algorithym to work.
-`Note:` This project is ready to test (in progress), if you want to use in your own project withou clone the project, all you need is to copy the code in
+##### Note
+This project is ready to test (in progress), if you want to use in your own project withou clone the project, all you need is to copy the code in
 the section `use the code`.
 
 ### Nomenculature
 When writing the css variable name, be aware that the prorperty name when writing the style inline in Internet Explorer is always the last
 word in the variable name like '--variable-name-with-what-i-like-`propertyInJavaScript`'.
 The `propertyInJavaScript` must be written following the rules of the `HTML DOM style Property`.
-You can check all the possible `names` in this [link](https://www.w3schools.com/jsref/dom_obj_style.asp)
+Check here all the [possibities](https://www.w3schools.com/jsref/dom_obj_style.asp).
 
-### Gulp Task
-
+### CSS
+All `css variables` must be inside the root element, this gulp task only allows root element variables.
+Task will be updated to work with all kind of files
+```sh
+:root {
+  --variable: value;
+}
+element {
+  color: var(--variable);
+}
+```
 
 ## Use the Code
 ### Typescript Class
@@ -120,13 +132,15 @@ export class Utilities {
 ```sh
 import {Utilities} from '../utilities';
 const propStyle: any = {};
-myHtmlElement = document.document.querySelector('.myHtmlElement');
+myHtmlElement = document.querySelector('.myHtmlElement');
 propStyle['--my-varibale-left'] = '14px';
 Utilities.changeProperty(myHtmlElement, propStyle);
 ```
 
 ### Gulp
 #### Installation
+
+This gulp is from [Evgeny Petukov](https://github.com/evgeny-petukhov/gulp-vars) project.
 
 ```sh
 npm install gulp-vars --save-dev
@@ -156,7 +170,7 @@ gulp.task('pl-compile-ie:css', function(){
 
 ## Contributing
 
-1. Fork this project: [https://github.com/andreros/typescript-boilerplate/fork](https://github.com/andreros/typescript-boilerplate/fork)
+1. Fork this project: [https://github.com/Mteixeira88/css-variables-IE-script](https://github.com/Mteixeira88/css-variables-IE-script)
 2. Create your feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
@@ -167,12 +181,12 @@ gulp.task('pl-compile-ie:css', function(){
 **Miguel Teixeira**
 * <https://github.com/Mteixeira88>
 
-## Contributors
+#### Contributors
 **Mauro Reis**
 * <https://github.com/mauroreisvieira>
 
-## Project forked
-*<https://github.com/andreros/typescript-boilerplate>
+#### Project forked
+* <https://github.com/andreros/typescript-boilerplate>
 **André Rosa**
 * <https://bitbucket.org/candrelsrosa>
 * <https://github.com/andreros/>
