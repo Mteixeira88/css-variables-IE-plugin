@@ -1,4 +1,3 @@
-
 :root {
     --app-backgroundColor: red;
     --app-translateX: 0px;
@@ -76,8 +75,8 @@
         }
     }
 
-    .ncpp-is-visible {
-        &app__button--reset {
+    .app-is-visible {
+        &.app__button--reset {
             display: var(--app-button-display)
         }
     }

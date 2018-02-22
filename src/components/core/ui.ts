@@ -12,27 +12,28 @@ export class UI {
     public static detectBrowser(): string {
         const agent = navigator.userAgent;
         let browser;
-        if ((localStorage.getItem('browser') === undefined) ||
-            (localStorage.getItem('browser') === null)) {
-            if (agent.indexOf('Chrome') > -1) {
-                browser = 'Chrome';
-            } else if (agent.indexOf('Safari') > -1) {
-                browser = 'Safari';
-            } else if (agent.indexOf('Opera') > -1) {
-                browser = 'Opera';
-            } else if (agent.indexOf('Firefox') > -1) {
-                browser = 'Firefox';
-            } else if (agent.indexOf('Edge') > -1) {
-                browser = 'Edge';
-            } else if ((navigator.userAgent.indexOf('Trident/7.0') > 0) ||
-                (/MSIE 10/i.test(navigator.userAgent)) ||
-                (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent))) {
-                browser = 'IE';
-            }
-            localStorage.setItem('browser', browser);
-            return browser;
+
+        if (localStorage.getItem('browser')) {
+            return localStorage.getItem('browser');
         }
-        return localStorage.getItem('browser');
+
+        if (agent.indexOf('Chrome') > -1) {
+            browser = 'Chrome';
+        } else if (agent.indexOf('Safari') > -1) {
+            browser = 'Safari';
+        } else if (agent.indexOf('Opera') > -1) {
+            browser = 'Opera';
+        } else if (agent.indexOf('Firefox') > -1) {
+            browser = 'Firefox';
+        } else if (agent.indexOf('Edge') > -1) {
+            browser = 'Edge';
+        } else if ((navigator.userAgent.indexOf('Trident/7.0') > 0) ||
+            (/MSIE 10/i.test(navigator.userAgent)) ||
+            (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent))) {
+            browser = 'IE';
+        }
+        localStorage.setItem('browser', browser);
+        return browser;
     }
 
     /**
@@ -42,13 +43,13 @@ export class UI {
      * @param {type}(HTMLElement, any)
      */
     public static changeProperty(element: HTMLElement, properties: any) {
+
         if (this.detectBrowser() === 'IE') {
             Object.keys(properties).forEach((key: any | {}) => {
                 const property = key.split('-');
                 const propertyName = property[property.length - 1];
-                //This enables the use of the transform property in Internet explorer
-                if (propertyName.match('translate') || propertyName.match('rotate') || propertyName.match('skew')
-                    || propertyName.match('matrix') || propertyName.match('perpective')) {
+                // This enables the use of the transform property in Internet explorer
+                if (propertyName.match(/^translate|rotate|skew|matrix|perpective$/) ) {
                     element.style.transform = propertyName + '(' + properties[key] + ')';
                     return;
                 }
