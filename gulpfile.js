@@ -42,7 +42,7 @@ const gulp = require('gulp'),
 
 const SRC_FOLDER = './src';
 const SRC_ASSETS_FOLDER = SRC_FOLDER + '/assets';
-const DIST_FOLDER = './dist';
+const DIST_FOLDER = './docs';
 const DIST_ASSETS_FOLDER = DIST_FOLDER + '/assets';
 
 /**
