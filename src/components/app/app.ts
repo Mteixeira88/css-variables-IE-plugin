@@ -15,14 +15,13 @@ export class App {
         TRIGGER_LEFT: 'animation-left',
         TRIGGER_TOP: 'animation-top',
         TRIGGER_DOUBLE_SIZE: 'app__button--size',
-        TRIGGER_RESET_SIZE: 'app__button--size-reset'
+        TRIGGER_RESET_SIZE: 'app__button--reset'
     };
 
     private cssVariables: any = {
         BACKGROUND_COLOR: '--app-backgroundColor',
-        BALL_POSITION_TOP: '--app-position-top',
-        BALL_POSITION_LEFT: '--app-translateX',
-        BALL_ANIMATION_TOP: '--app-translateY',
+        BALL_ANIMATION_LEFT: '--app-translateX',
+        DISPLAY: '--app-button-display'
     };
 
     constructor() {
@@ -34,11 +33,9 @@ export class App {
         this.ball = document.querySelector('.' + App.CSS_CLASSES.BALL);
         this.triggerColor = document.querySelector('.' + App.CSS_CLASSES.TRIGGER_COLOR);
         this.triggerLeft = document.querySelector('.' + App.CSS_CLASSES.TRIGGER_LEFT);
-        this.triggerTop = document.querySelector('.' + App.CSS_CLASSES.TRIGGER_TOP);
         this.triggerDoubleSize = document.querySelector('.' + App.CSS_CLASSES.TRIGGER_DOUBLE_SIZE);
         this.triggerResetSize = document.querySelector('.' + App.CSS_CLASSES.TRIGGER_RESET_SIZE);
         this.registerEventHandler();
-                console.log('2-', this.triggerColor);
     }
 
     public destroy(): void {
@@ -69,9 +66,37 @@ export class App {
     */
     private onClick = (ev: Event) => {
         const propStyle: any = {};
-        if (ev.target === this.triggerColor) {
-            propStyle[this.cssVariables.BACKGROUND_COLOR] = 'green';
+        switch (ev.target) {
+            case this.triggerColor:
+                    propStyle[this.cssVariables.BACKGROUND_COLOR] = 'green';
+                    this.verifyReset();
+                break;
+            case this.triggerLeft:
+                    propStyle[this.cssVariables.BALL_ANIMATION_LEFT] = '300px';
+                    this.verifyReset();
+                break;
+            case this.triggerResetSize:
+            console.log(this.triggerResetSize);
+                    const propStyleReset: any = {};
+                    this.triggerResetSize.classList.remove('ncpp-is-visible');
+                    propStyleReset[this.cssVariables.DISPLAY] = 'none';
+                    UI.changeProperty(this.triggerResetSize, propStyleReset);
+                    propStyle[this.cssVariables.BALL_ANIMATION_LEFT] = '0';
+                    propStyle[this.cssVariables.BACKGROUND_COLOR] = 'red';
+                break;
+            default:
+                // code...
+                break;
         }
         UI.changeProperty(this.ball, propStyle);
+    }
+
+    private verifyReset = () => {
+        const propStyle: any = {};
+        if (!this.triggerResetSize.classList.contains('ncpp-is-visible')) {
+                this.triggerResetSize.classList.add('ncpp-is-visible');
+                propStyle[this.cssVariables.DISPLAY] = 'block';
+                UI.changeProperty(this.triggerResetSize, propStyle);
+        }
     }
 }

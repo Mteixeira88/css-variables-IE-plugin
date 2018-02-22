@@ -109,7 +109,7 @@ gulp.task('copy:images', function () {
  * This task is responsible for processing SASS files converting them to plain CSS.
  */
 gulp.task('build:scss', function () {
-    gulp.task('scss', function() {
+    gulp.task('build-scss-css', function() {
         return gulp.src(SRC_FOLDER + '/index.scss')
             .pipe(sourcemaps.init())
             .pipe(sass().on('error', sass.logError))
@@ -120,7 +120,7 @@ gulp.task('build:scss', function () {
             .pipe(gulp.dest(DIST_FOLDER));
     });
 
-    gulp.task('build-ie', ['scss'], function() {
+    gulp.task('build-ie', ['build-scss-css'], function() {
         return gulp.src(DIST_FOLDER + '/index.css')
             .pipe(vars())
             .pipe(rename(function (path) {

@@ -168,24 +168,30 @@ npm install gulp-vars --save-dev
 ```
 
 ```javascript
-gulp.task('pl-assets', gulp.series(
-    'pl-copy:css'
-));
+// css variables
+    vars = require('gulp-vars'),
 
-gulp.task('pl-copy:css', gulp.series(
-  'pl-compile-ie:css'
-));
+gulp.task('build:scss', function () {
+    gulp.task('build-scss-css', function() {
+        return gulp.src(SRC_FOLDER + '/index.scss')
+            .pipe(sourcemaps.init())
+            .pipe(sass().on('error', sass.logError))
+            .pipe(sourcemaps.write())
+            .pipe(autoprefixer({
+                browsers: ['last 2 versions']
+            }))
+            .pipe(gulp.dest(DIST_FOLDER));
+    });
 
-gulp.task('pl-compile-ie:css', function(){
-  return gulp.src([
-      normalizePath(paths().public.css + '/**/*.css')
-    ])
-    .pipe(vars())
-    .pipe(gulp_rename(function (path) {
-      path.basename += "-ie";
-    }))
-    .pipe(gulp.dest(normalizePath(paths().public.css)))
-    .pipe(browserSync.stream());
+    gulp.task('build-ie', ['build-scss-css'], function() {
+        return gulp.src(DIST_FOLDER + '/index.css')
+            .pipe(vars())
+            .pipe(rename(function (path) {
+              path.basename += "-ie";
+            }))
+            .pipe(gulp.dest(DIST_FOLDER));
+    });
+    gulp.start('build-ie');
 });
 ```
 

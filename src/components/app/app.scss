@@ -5,7 +5,7 @@
     --app-translateX: translateX(0);
     --app-size-widht: 50px;
     --app-size-height: 50px;
-    --app-button-display: block;
+    --app-button-display: none;
 }
 .app {
     &__body{
@@ -20,8 +20,8 @@
         height: var(--app-size-height);
         border-radius: 50%;
         background-color: var(--app-backgroundColor);
-        transform: translate(var(--app-translateX), var(--app-translateX));
-        transition: all 5s linear;
+        transform: translate(var(--app-translateX));
+        transition: all 3s linear;
 
         &__wrapper {
             width: 100%;
@@ -60,7 +60,7 @@
             color: white;
         }
 
-        &--size-reset {
+        &--reset {
             background-color: red;
             color: white;
             display: var(--app-button-display)
@@ -74,6 +74,12 @@
 
         &:focus {
             outline: none;
+        }
+    }
+
+    .ncpp-is-visible {
+        &app__button--reset {
+            display: var(--app-button-display)
         }
     }
 }
