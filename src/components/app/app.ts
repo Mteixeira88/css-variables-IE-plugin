@@ -1,4 +1,4 @@
-import {UI} from "../core/ui";
+import {UI} from '../core/ui';
 export class App {
     private triggerColor: HTMLElement;   // trigger for the color button element
     private triggerLeft: HTMLElement;   // trigger for the left animation button element
@@ -28,7 +28,7 @@ export class App {
     }
 
     public init(): void {
-
+        // init method
     }
 
 }

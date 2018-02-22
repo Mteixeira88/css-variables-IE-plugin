@@ -180,12 +180,12 @@ gulp.task('serve', function () {
                 }
             });
             // listen for changes in the following file types
-            gulp.watch(SRC_FOLDER + '/**/*.ts', ['ts:lint', 'ts:compile']);
+            gulp.watch(SRC_FOLDER + '/**/*.ts', ['ts:lint', 'browserify']);
             gulp.watch(SRC_FOLDER + '/**/*.scss', ['build:scss']);
             gulp.watch(SRC_FOLDER + '/**/*.json', ['build:html']);
             gulp.watch(SRC_FOLDER + '/**/*.hbs', ['build:html']);
             gulp.watch(SRC_FOLDER + '/**/*.html', ['build:html']);
-            gulp.watch([DIST_FOLDER + '/*.js', DIST_FOLDER + '/*.html', DIST_FOLDER + '/*.css']).on('change', browserSync.reload);
+            gulp.watch([DIST_FOLDER + '/**/*.js', DIST_FOLDER + '/**/*.html', DIST_FOLDER + '/**/*.css']).on('change', browserSync.reload);
         } else {
             // detect specific errors
             switch (err.code) {

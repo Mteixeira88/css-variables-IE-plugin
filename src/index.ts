@@ -1,2 +1,2 @@
 // Application entry point
-import { UI } from "./components/core/ui";
+import { UI } from './components/core/ui';
