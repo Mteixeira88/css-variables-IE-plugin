@@ -1,4 +1,4 @@
-# CSS variables for Internet Explorer <= 11
+# Web enchancements on Internet Explorer
 
 This project enables the use of the last breakthrough web enchancements like `css variables` on Internet Explorer.
 
@@ -121,8 +121,9 @@ export class Utilities {
                 const property = key.split('-');
                 const propertyName = property[property.length - 1];
                 //This enables the use of the transform property in Internet explorer
-                if (propertyName.contains('translate') || propertyName.contains('rotate') || propertyName.contains('skew') || propertyName.contains('matrix')|| propertyName.contains('perpective')) {
-                    element.style.transform = propertyName(properties[key]);
+               // This enables the use of the transform property in Internet explorer
+                if (propertyName.match(/^translate|rotate|skew|matrix|perpective$/) ) {
+                    element.style.transform = propertyName + '(' + properties[key] + ')';
                     return;
                 }
                 element.style[propertyName] = properties[key];

@@ -1,7 +1,7 @@
 {
     "app": {
         "color": "Click to change color",
-        "left": "Click to animate left",
+        "left": "Click to animate translateX",
         "size": "Click to double size",
         "reset": "Click to reset"
     }

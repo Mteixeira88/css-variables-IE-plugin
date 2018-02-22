@@ -1,0 +1,12 @@
+{
+	"app": {
+		"color": "Click to change color",
+		"left": "Click to animate translateX",
+		"size": "Click to double size",
+		"reset": "Click to reset"
+	},
+	"header": {
+		"title": " Web enchancements on IE",
+		"subtitle": "This project enables the use of the last breakthrough web enchancements on Internet Explorer."
+	}
+}
