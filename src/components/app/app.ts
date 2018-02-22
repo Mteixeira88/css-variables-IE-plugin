@@ -52,6 +52,7 @@ export class App {
                 callback: this.onClick
             }
         };
+        // init method
     }
 
     public registerEventHandler(): void {

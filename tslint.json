@@ -30,6 +30,7 @@
         "no-unused-expression": true,
         "no-use-before-declare": false,
         "no-var-keyword": true,
+        "object-literal-sort-keys": false,
         "no-for-in-array": true,
         "one-line": [true,
             "check-open-brace",
