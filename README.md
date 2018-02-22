@@ -65,7 +65,7 @@ In case you are using `transform` to animate the `propertyInJavaScript`, you sho
 
 ### CSS
 All `css variables` must be inside the `:root` element. The Gulp task responsible for handling the conversion only allows `:root` element variables.
-Task will be updated to work with all kinds of elements.
+Tasks will be updated to work with all kinds of elements.
 
 ```css
 :root {
@@ -159,12 +159,20 @@ To be compatible with Internet Explorer you must have the target of the compiler
 ```
 
 ### Typescript arrow functions
-Typescript arrow functions (private onClick = (ev: Event) => {}) does not work in Internet Explorer, to solve this problem you must bind the event.
+Typescript arrow functions do not work in Internet Explorer. To solve this problem, please bind the event.
 
 ```javascript
- this.onClick = this.onClick.bind(this);
+// Arrow function example
+// Does not work in Internet Explorer
+private onClick = (ev: Event) => {
+    // some code
+}
+
+// Event binding
+// Works in Internet Explorer
+this.onClick = this.onClick.bind(this);
 private onClick (ev: Event): void {
-  //your function goes here
+  // your function goes here
 }
 ```
 
