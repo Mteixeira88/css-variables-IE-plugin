@@ -1,7 +1,6 @@
-{
+ {
     "rules": {
         "class-name": true,
-        "comment-format": [true, "check-space"],
         "curly": true,
         "eofline": true,
         "forin": true,
@@ -31,7 +30,6 @@
         "no-unused-expression": true,
         "no-use-before-declare": false,
         "no-var-keyword": true,
-        "object-literal-sort-keys": true,
         "no-for-in-array": true,
         "one-line": [true,
             "check-open-brace",
@@ -40,7 +38,7 @@
             "check-finally",
             "check-whitespace"
         ],
-        "quotemark": [true, "double", "avoid-escape"],
+        "quotemark": [true, "single", "avoid-escape"],
         "radix": true,
         "semicolon": true,
         "trailing-comma": [false, {

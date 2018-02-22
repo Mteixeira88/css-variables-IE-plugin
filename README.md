@@ -113,6 +113,7 @@ export class Utilities {
             Object.keys(properties).forEach((key: any | {}) => {
                 const property = key.split('-');
                 const propertyName = property[property.length - 1];
+                //This enables the use of the transform property in Internet explorer
                 if (propertyName.contains('translate') || propertyName.contains('rotate') || propertyName.contains('skew') || propertyName.contains('matrix')|| propertyName.contains('perpective')) {
                     element.style.transform = propertyName(properties[key]);
                     return;
@@ -136,6 +137,25 @@ const propStyle: any = {};
 myHtmlElement = document.querySelector('.myHtmlElement');
 propStyle['--my-varibale-left'] = '14px';
 Utilities.changeProperty(myHtmlElement, propStyle);
+```
+
+### Typescript tsconfig.json
+To be compatible with Internet Explorer you must have the target of the compiler options to `es5`.
+
+```javascript
+"compilerOptions": {
+    "target": "es5"
+}
+```
+
+### Typescript arrow functions
+Typescript arrow functions (private onClick = (ev: Event) => {}) does not work in Internet Explorer, to solve this problem you must bind the event.
+
+```javascript
+ this.onClick = this.onClick.bind(this);
+private onClick (ev: Event): void {
+  //your function goes here
+}
 ```
 
 ### Gulp
