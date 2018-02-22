@@ -1,0 +1,79 @@
+
+:root {
+    --app-backgroundColor: red;
+    --app-translateY: translateY(0);
+    --app-translateX: translateX(0);
+    --app-size-widht: 50px;
+    --app-size-height: 50px;
+    --app-button-display: block;
+}
+.app {
+    &__body{
+        width: 100%;
+        height: calc(100vh - 200px);
+        display: flex;
+        justify-content: center;
+    }
+
+    &__ball {
+        width: var(--app-size-widht);
+        height: var(--app-size-height);
+        border-radius: 50%;
+        background-color: var(--app-backgroundColor);
+        transform: translate(var(--app-translateX), var(--app-translateX));
+        transition: all 5s linear;
+
+        &__wrapper {
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding: 50px;
+            overflow: hidden;
+        }
+    }
+
+    &__button {
+        cursor: pointer;
+        height: 56px;
+        border-radius: 5px;
+        padding: 8px;
+        margin-top: 16px;
+
+        &__wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        &--animation {
+            background-color: #ffbf00;
+            color: white;
+        }
+
+        &--change-color {
+            background-color: #86a57f;
+            color: white;
+        }
+
+        &--size {
+            background-color: #86a57f;
+            color: white;
+        }
+
+        &--size-reset {
+            background-color: red;
+            color: white;
+            display: var(--app-button-display)
+        }
+
+        &:hover {
+            background-color: white;
+            color: black;
+            outline: none;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

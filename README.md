@@ -33,11 +33,9 @@ From the command line (Windows, Mac or Linux), please execute the following comm
 npm install --global gulp-cli
 ```
 
-
 ## Installation
 
 Clone or download this project. From the project directory run the command `npm install`.
-
 
 ## Local Development
 
@@ -51,11 +49,16 @@ Below it's possible to see the rules used for the algorithym to work.
 This project is ready to test (in progress), if you want to use in your own project withou clone the project, all you need is to copy the code in
 the section `use the code`.
 
+This project only enables one transform at a time, meaning when writting the style inline it will write `style= transform:translateX(100px)`, it´s not
+possible (yet) to have multiple transforms like `style= transform:translate(100px, 20px) rotate(120deg)`.
+
 ### Nomenculature
 When writing the css variable name, be aware that the prorperty name when writing the style inline in Internet Explorer is always the last
 word in the variable name like '--variable-name-with-what-i-like-`propertyInJavaScript`'.
 The `propertyInJavaScript` must be written following the rules of the `HTML DOM style Property`.
 Check here all the [possibities](https://www.w3schools.com/jsref/dom_obj_style.asp).
+
+In case you are using `transform` to animate the`propertyInJavaScript` should follow this [Property Values](https://www.w3schools.com/cssref/css3_pr_transform.asp).
 
 ### CSS
 All `css variables` must be inside the root element, this gulp task only allows root element variables.
@@ -73,12 +76,6 @@ element {
 ### Typescript Class
 ```javascript
 export class Utilities {
-    private element: HTMLElement;
-
-    constructor(element: any) {
-        this.element = element;
-    }
-
     /**
     * The Window.navigator read-only property returns a reference to the Navigator object,
     * which can be queried for information about the application running the script.
@@ -116,6 +113,10 @@ export class Utilities {
             Object.keys(properties).forEach((key: any | {}) => {
                 const property = key.split('-');
                 const propertyName = property[property.length - 1];
+                if (propertyName.contains('translate') || propertyName.contains('rotate') || propertyName.contains('skew') || propertyName.contains('matrix')|| propertyName.contains('perpective')) {
+                    element.style.transform = propertyName(properties[key]);
+                    return;
+                }
                 element.style[propertyName] = properties[key];
               });
         } else {
@@ -217,14 +218,14 @@ In your `head.html` add the following script:
 **Miguel Teixeira**
 * <https://github.com/Mteixeira88>
 
-#### Contributors
+### Contributors
 **Mauro Reis**
-* <https://github.com/mauroreisvieira>
+* <https://github.com/maurovieirareis>
 
 **Abel Lopes**
 * <https://github.com/abelflopes>
 
-#### Project forked
+### Project forked
 * <https://github.com/andreros/typescript-boilerplate>
 
 **André Rosa**
