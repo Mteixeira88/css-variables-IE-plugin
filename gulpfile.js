@@ -19,6 +19,9 @@ const gulp = require('gulp'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
 
+    // css variables
+    vars = require('gulp-vars'),
+
     // Browserify
     browserify = require('browserify'),
     uglify = require('gulp-uglify-es').default,
@@ -106,14 +109,26 @@ gulp.task('copy:images', function () {
  * This task is responsible for processing SASS files converting them to plain CSS.
  */
 gulp.task('build:scss', function () {
-    return gulp.src(SRC_FOLDER + '/index.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write())
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions']
-        }))
-        .pipe(gulp.dest(DIST_FOLDER));
+    gulp.task('scss', function() {
+        return gulp.src(SRC_FOLDER + '/index.scss')
+            .pipe(sourcemaps.init())
+            .pipe(sass().on('error', sass.logError))
+            .pipe(sourcemaps.write())
+            .pipe(autoprefixer({
+                browsers: ['last 2 versions']
+            }))
+            .pipe(gulp.dest(DIST_FOLDER));
+    });
+
+    gulp.task('build-ie', ['scss'], function() {
+        return gulp.src(DIST_FOLDER + '/index.css')
+            .pipe(vars())
+            .pipe(rename(function (path) {
+              path.basename += "-ie";
+            }))
+            .pipe(gulp.dest(DIST_FOLDER));
+    });
+    gulp.start('build-ie');
 });
 
 /**

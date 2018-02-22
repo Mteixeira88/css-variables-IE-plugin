@@ -1,2 +1,4 @@
 // Application entry point
-import { UI } from './components/core/ui';
+import { App } from './components/app/app';
+
+const cssVariables = new App();
