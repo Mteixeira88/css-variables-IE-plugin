@@ -1,9 +1,8 @@
 
 :root {
     --app-backgroundColor: red;
-    --app-translateY: translateY(0);
-    --app-translateX: translateX(0);
-    --app-size-widht: 50px;
+    --app-translateX: 0px;
+    --app-size-width: 50px;
     --app-size-height: 50px;
     --app-button-display: none;
 }
@@ -16,11 +15,11 @@
     }
 
     &__ball {
-        width: var(--app-size-widht);
+        width: var(--app-size-width);
         height: var(--app-size-height);
         border-radius: 50%;
         background-color: var(--app-backgroundColor);
-        transform: translate(var(--app-translateX));
+        transform: translateX(var(--app-translateX));
         transition: all 3s linear;
 
         &__wrapper {

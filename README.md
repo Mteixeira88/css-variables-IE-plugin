@@ -1,10 +1,6 @@
 # CSS variables for Internet Explorer <= 11
 
-[![Waffle.io](https://img.shields.io/waffle/label/evancohen/smart-mirror/in%20progress.svg)]()
-
-This project enables the use of css variables on Internet Explorer <= 11.
-
-**Note:** This project is still in progress, but you can see the code/example below, in the [Usage](#usage) section.
+This project enables the use of the last breakthrough web enchancements like `css variables` on Internet Explorer.
 
 ## Motivation
 
@@ -61,7 +57,8 @@ word in the variable name like '--some-variable-name-i-like-`propertyInJavaScrip
 The `propertyInJavaScript` must be compliant with the `HTML DOM style Property` rules. For a complete list of all the rules, please, click
 [here](https://www.w3schools.com/jsref/dom_obj_style.asp).
 
-In case you are using `transform` to animate the `propertyInJavaScript`, you should follow these [property values](https://www.w3schools.com/cssref/css3_pr_transform.asp).
+In case you are using `transform` to animate the `propertyInJavaScript`, you should follow
+these [property values](https://www.w3schools.com/cssref/css3_pr_transform.asp).
 
 ### CSS
 All `css variables` must be inside the `:root` element. The Gulp task responsible for handling the conversion only allows `:root` element variables.
@@ -171,7 +168,7 @@ private onClick = (ev: Event) => {
 // Event binding
 // Works in Internet Explorer
 this.onClick = this.onClick.bind(this);
-private onClick (ev: Event): void {
+private onClick = () => {
   // your function goes here
 }
 ```

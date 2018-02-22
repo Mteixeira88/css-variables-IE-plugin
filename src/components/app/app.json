@@ -1,4 +1,8 @@
 {
     "app": {
+        "color": "Click to change color",
+        "left": "Click to animate left",
+        "size": "Click to double size",
+        "reset": "Click to reset"
     }
 }

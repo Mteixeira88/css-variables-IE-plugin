@@ -21,7 +21,9 @@ export class App {
     private cssVariables: any = {
         BACKGROUND_COLOR: '--app-backgroundColor',
         BALL_ANIMATION_LEFT: '--app-translateX',
-        DISPLAY: '--app-button-display'
+        DISPLAY: '--app-button-display',
+        WIDTH: '--app-size-width',
+        HEIGHT: '--app-size-height'
     };
 
     constructor() {
@@ -68,21 +70,28 @@ export class App {
         const propStyle: any = {};
         switch (ev.target) {
             case this.triggerColor:
-                    propStyle[this.cssVariables.BACKGROUND_COLOR] = 'green';
-                    this.verifyReset();
+                propStyle[this.cssVariables.BACKGROUND_COLOR] = 'green';
+                this.verifyReset();
                 break;
             case this.triggerLeft:
-                    propStyle[this.cssVariables.BALL_ANIMATION_LEFT] = '300px';
-                    this.verifyReset();
+                propStyle[this.cssVariables.BALL_ANIMATION_LEFT] = '300px';
+                this.verifyReset();
+                break;
+            case this.triggerDoubleSize:
+                const radius = parseInt(window.getComputedStyle(this.ball).width);
+                propStyle[this.cssVariables.WIDTH] = 2 * radius + 'px';
+                propStyle[this.cssVariables.HEIGHT] = 2 * radius + 'px';
+                this.verifyReset();
                 break;
             case this.triggerResetSize:
-            console.log(this.triggerResetSize);
-                    const propStyleReset: any = {};
-                    this.triggerResetSize.classList.remove('ncpp-is-visible');
-                    propStyleReset[this.cssVariables.DISPLAY] = 'none';
-                    UI.changeProperty(this.triggerResetSize, propStyleReset);
-                    propStyle[this.cssVariables.BALL_ANIMATION_LEFT] = '0';
-                    propStyle[this.cssVariables.BACKGROUND_COLOR] = 'red';
+                const propStyleReset: any = {};
+                this.triggerResetSize.classList.remove('ncpp-is-visible');
+                propStyleReset[this.cssVariables.DISPLAY] = 'none';
+                UI.changeProperty(this.triggerResetSize, propStyleReset);
+                propStyle[this.cssVariables.BALL_ANIMATION_LEFT] = '0';
+                propStyle[this.cssVariables.BACKGROUND_COLOR] = 'red';
+                propStyle[this.cssVariables.WIDTH] = '50px';
+                propStyle[this.cssVariables.HEIGHT] = '50px';
                 break;
             default:
                 // code...

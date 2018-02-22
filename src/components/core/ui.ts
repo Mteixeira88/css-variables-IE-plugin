@@ -46,6 +46,12 @@ export class UI {
             Object.keys(properties).forEach((key: any | {}) => {
                 const property = key.split('-');
                 const propertyName = property[property.length - 1];
+                //This enables the use of the transform property in Internet explorer
+                if (propertyName.match('translate') || propertyName.match('rotate') || propertyName.match('skew')
+                    || propertyName.match('matrix') || propertyName.match('perpective')) {
+                    element.style.transform = propertyName + '(' + properties[key] + ')';
+                    return;
+                }
                 element.style[propertyName] = properties[key];
             });
         } else {

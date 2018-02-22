@@ -40,7 +40,6 @@
             "check-whitespace"
         ],
         "quotemark": [true, "single", "avoid-escape"],
-        "radix": true,
         "semicolon": true,
         "trailing-comma": [false, {
             "singleline": "never",
