@@ -4,14 +4,14 @@
 
 This project enables the use of css variables on Internet Explorer <= 11.
 
-**Note:** This project is still in progress, but you can see the code/example bellow in the [Usage](#usage) section.
+**Note:** This project is still in progress, but you can see the code/example below, in the [Usage](#usage) section.
 
 ## Motivation
 
 When programming, the most frustrating part is when we test our website in Internet Explorer and we want to implement the last breakthrough
-web enhancements like [css variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables). The creation of this repository
-is to enable all programmers to stop thinking on this particular problem and start using as they want `css variables` withou even have to
-worry about if it works in IE<=11.
+web enhancements like [css variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables). This repository was created
+to enable all programmers to stop thinking about this particular problem and start using `css variables` as they wish, without even worrying
+if their code works in IE<=11.
 
 ## Test Prerequisites
 
@@ -23,7 +23,9 @@ Please, read the [Node.js official installation guide](https://github.com/nodejs
 
 ### [Gulp](https://gulpjs.com/)
 
-Gulp uses Node for core processing, npm to manage project dependencies, and gulp.js to run tasks and interface with the core library. Node version 8 or higher suffices. You can follow the directions for installing Node on the Node website if you haven't done so already. Installation of Node will include npm. In order to run this project gulp tasks it is highly recommended that you install gulp globally.
+Gulp uses Node for core processing, npm to manage project dependencies, and gulp.js to run tasks and interface with the core library. Node
+version 8 or higher suffices. You can follow the directions for installing Node on the Node website if you haven't done so already.
+Installation of Node will include npm. In order to run this project gulp tasks it is highly recommended that you install gulp globally.
 
 #### Gulp installation
 
@@ -42,27 +44,29 @@ Clone or download this project. From the project directory run the command `npm 
 To run the project in development mode, from the project directory run the command `npm run dev`. Your default
 browser should open a window with the project running from [http://localhost:3000/](http://localhost:3000/).
 
-<a id="usage"></a>
-## Usage
-Below it's possible to see the rules used for the algorithym to work.
+
+## Usage<a id="usage"></a>
+Below it is possible to see the rules used for the algorithm to work.
+
 ##### Note
-This project is ready to test (in progress), if you want to use in your own project withou clone the project, all you need is to copy the code in
-the section `use the code`.
+This project is ready to test (in progress). If you want to use its code in your own project without cloning it, all you need is to copy the code in
+the section [Use the Code](#usethecode).
 
-This project only enables one transform at a time, meaning when writting the style inline it will write `style= transform:translateX(100px)`, it´s not
-possible (yet) to have multiple transforms like `style= transform:translate(100px, 20px) rotate(120deg)`.
+This project only allows one transform at a time, meaning that when writing the style inline, it will write `style= transform:translateX(100px)`.
+It is not possible (yet) to have multiple transforms like `style= transform:translate(100px, 20px) rotate(120deg)`.
 
-### Nomenculature
-When writing the css variable name, be aware that the prorperty name when writing the style inline in Internet Explorer is always the last
-word in the variable name like '--variable-name-with-what-i-like-`propertyInJavaScript`'.
-The `propertyInJavaScript` must be written following the rules of the `HTML DOM style Property`.
-Check here all the [possibities](https://www.w3schools.com/jsref/dom_obj_style.asp).
+### Naming Convention
+When writing the css variable name, be aware that the property name, when writing the style inline in Internet Explorer, is always the last
+word in the variable name like '--some-variable-name-i-like-`propertyInJavaScript`'.
+The `propertyInJavaScript` must be compliant with the `HTML DOM style Property` rules. For a complete list of all the rules, please, click
+[here](https://www.w3schools.com/jsref/dom_obj_style.asp).
 
-In case you are using `transform` to animate the`propertyInJavaScript` should follow this [Property Values](https://www.w3schools.com/cssref/css3_pr_transform.asp).
+In case you are using `transform` to animate the `propertyInJavaScript`, you should follow these [property values](https://www.w3schools.com/cssref/css3_pr_transform.asp).
 
 ### CSS
-All `css variables` must be inside the root element, this gulp task only allows root element variables.
-Task will be updated to work with all kind of files
+All `css variables` must be inside the `:root` element. The Gulp task responsible for handling the conversion only allows `:root` element variables.
+Task will be updated to work with all kinds of elements.
+
 ```css
 :root {
   --variable: value;
@@ -72,7 +76,8 @@ element {
 }
 ```
 
-## Use the Code
+
+## Use the Code<a name="usethecode"></a>
 ### Typescript Class
 ```javascript
 export class Utilities {
@@ -81,25 +86,30 @@ export class Utilities {
     * which can be queried for information about the application running the script.
     * @return {string} browser
     */
-   public static detectBrowser(): string {
+    public static detectBrowser(): string {
         const agent = navigator.userAgent;
         let browser;
-        if (agent.indexOf('Chrome') > -1) {
-            browser = 'Chrome';
-        } else if (agent.indexOf('Safari') > -1) {
-            browser = 'Safari';
-        } else if (agent.indexOf('Opera') > -1) {
-            browser = 'Opera';
-        } else if (agent.indexOf('Firefox') > -1) {
-            browser = 'Firefox';
-        } else if (agent.indexOf('Edge') > -1) {
-            browser = 'Edge';
-        } else if ((navigator.userAgent.indexOf('Trident/7.0') > 0) ||
-            (/MSIE 10/i.test(navigator.userAgent)) ||
-            (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent))) {
-            browser = 'IE';
+        if ((localStorage.getItem('browser') === undefined) ||
+            (localStorage.getItem('browser') === null)) {
+            if (agent.indexOf('Chrome') > -1) {
+                browser = 'Chrome';
+            } else if (agent.indexOf('Safari') > -1) {
+                browser = 'Safari';
+            } else if (agent.indexOf('Opera') > -1) {
+                browser = 'Opera';
+            } else if (agent.indexOf('Firefox') > -1) {
+                browser = 'Firefox';
+            } else if (agent.indexOf('Edge') > -1) {
+                browser = 'Edge';
+            } else if ((navigator.userAgent.indexOf('Trident/7.0') > 0) ||
+                (/MSIE 10/i.test(navigator.userAgent)) ||
+                (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent))) {
+                browser = 'IE';
+            }
+            localStorage.setItem('browser', browser);
+            return browser;
         }
-        return browser;
+        return localStorage.getItem('browser');
     }
 
     /**
@@ -139,6 +149,7 @@ Utilities.changeProperty(myHtmlElement, propStyle);
 ```
 
 ### Gulp
+
 #### Installation
 
 This gulp is from [Evgeny Petukov](https://github.com/evgeny-petukhov/gulp-vars) project.
@@ -225,7 +236,7 @@ In your `head.html` add the following script:
 **Abel Lopes**
 * <https://github.com/abelflopes>
 
-### Project forked
+### Project forked from
 * <https://github.com/andreros/typescript-boilerplate>
 
 **André Rosa**
