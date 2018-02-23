@@ -1,6 +1,6 @@
-# Typescript Boilerplate
+# Css Variables plugin
 
-Boilerplate for a Typescript project with SASS for CSS and Handlebars for HTML templating.
+This project enables the use of the last breakthrough web enchancements like `css variables` on Internet Explorer.# Typescript Boilerplate
 
 
 ## Expected Behavior
