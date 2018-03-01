@@ -1,6 +1,6 @@
 # Web enchancements on Internet Explorer
 
-Check the [demo](https://mteixeira88.github.io/css-variables-IE-script/).
+Check the [demo](https://mteixeira88.github.io/css-variables-IE-plugin/).
 
 This project enables the use of the last breakthrough web enchancements like `css variables` on Internet Explorer.
 
